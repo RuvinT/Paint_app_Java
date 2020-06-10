@@ -1,13 +1,22 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Polygon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.Timer;
+
 
 
 
@@ -65,6 +74,16 @@ public TutorialTest() {
 	g.setColor(Color.CYAN);
 	g.fillOval((int)mouseX,(int)mouseY, 15, 15);
 	
+	g.setColor(Color.black);
+	//g.drawPolygon(poly);
+	g.drawOval(400, 400, 200, 200);
+	g.drawOval(400, 100, 200, 200);
+	g.drawOval(600, 100, 200, 200);
+	g.drawArc(250, 100, 100, 100, 270, 180);
+	g.drawLine(100, 100, 300, 100);
+	g.drawArc(50, 100, 100, 100, 90, 180);
+	g.drawLine(100, 200, 300, 200);
+	
 	tm.start();
   
 	}
@@ -114,12 +133,47 @@ public TutorialTest() {
 			
 		JFrame jf =new JFrame();
 		jf.setTitle("test");
-		jf.setSize(1000,1000);
+		jf.setSize(1000,700);
 		jf.setVisible(true);
+		JPanel panel = new JPanel();
+		panel.setSize(50, 50);
+		
+	    JButton button = new JButton("Change Speed");
+	    panel.add(button, BorderLayout.CENTER);
+	    
+	    
+	    
+	    
+	    JTextField text=new JTextField("give a number");
+	   
+	    panel.add(text, BorderLayout.EAST);
+		
+		
+		
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		jf.add(t);
 		
+		
+		jf.add(t,BorderLayout.CENTER);
+		jf.add(panel,BorderLayout.PAGE_END);
+		
+		jf.setVisible(true);
+		
+		
+		button.addActionListener(new ActionListener() {
+
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        //your actions
+		    	
+		    	String s=text.getText();  
+		         int speed=Integer.parseInt(s);
+		         System.out.print(speed);
+		       
+		       t.tm.setDelay(speed);
+		        
+		    }
+		});
 		
 	}
 
